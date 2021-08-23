@@ -12,9 +12,8 @@
             style="max-width: 20rem"
             class="mb-2"
           >
-            <b-card-text>{{
-              `${meal.strCategoryDescription.slice(0, 100).trim()}…`
-            }}</b-card-text>
+            <b-card-text>{{ mealDescriptionFormatted(meal) }}</b-card-text>
+
             <b-button href="#" variant="info">View food</b-button>
           </b-card>
         </b-col>
@@ -46,6 +45,11 @@ export default {
             'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, labore dignissimos rem sint est aut deleniti, corporis laborum quam sit odio alias vel commodi laudantium enim dolorum deserunt velit cupiditate, provident repudiandae porro corrupti qui repellat facilis. Quasi, vel.'
         }
       ]
+    }
+  },
+  methods: {
+    mealDescriptionFormatted(meal) {
+      return `${meal.strCategoryDescription.slice(0, 100).trim()}…`
     }
   }
 }
