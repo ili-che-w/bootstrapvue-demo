@@ -28,24 +28,24 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
-      meals: [
-        {
-          idCategory: 1,
-          strCategory: 'cookies',
-          strCategoryDescription:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi error, quibusdam exercitationem cumque culpa atque ex! Inventore at maiores, alias officiis, ducimus nemo sequi laborum voluptate nulla impedit quas ullam? Fugit modi ut aliquam provident suscipit.'
-        },
-        {
-          idCategory: 2,
-          strCategory: 'french fries',
-          strCategoryDescription:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, labore dignissimos rem sint est aut deleniti, corporis laborum quam sit odio alias vel commodi laudantium enim dolorum deserunt velit cupiditate, provident repudiandae porro corrupti qui repellat facilis. Quasi, vel.'
-        }
-      ]
+      meals: []
     }
+  },
+  mounted() {
+    const url = 'https://www.themealdb.com/api/json/v1/1/categories.php'
+    axios
+      .get(url)
+      .then(response => {
+        this.meals = response.data.categories
+      })
+      .catch(err => {
+        console.log(err)
+      })
   },
   methods: {
     mealDescriptionFormatted(meal) {
